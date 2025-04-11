@@ -7,3 +7,4 @@ const person = new Person();
 console.log(person.name)
 console.log(person.__proto__ === Person.prototype);
 console.log(Person === Person.prototype.constructor); // true
+console.log(Object.prototype.__proto__)
