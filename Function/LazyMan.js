@@ -18,6 +18,9 @@ class LazyMan {
     }
 
     sleep(seconds) {
+        if (typeof seconds !== 'number' || isNaN(seconds) || seconds < 0) {
+            throw new Error('sleep 参数必须为非负数字');
+        }
         this.tasks.push(() =>
             new Promise(resolve =>
                 setTimeout(() => {
@@ -38,6 +41,9 @@ class LazyMan {
     }
 
     sleepFirst(seconds) {
+        if (typeof seconds !== 'number' || isNaN(seconds) || seconds < 0) {
+            throw new Error('sleepFirst 参数必须为非负数字');
+        }
         this.tasks.unshift(() =>
             new Promise(resolve =>
                 setTimeout(() => {
@@ -52,4 +58,4 @@ class LazyMan {
 
 const LazyMan1 = (name) => new LazyMan(name);
 
-LazyMan1('cc').eat('apple').sleep('2').eat('banana').sleepFirst('5');
+LazyMan1('cc').eat('apple').sleep(2).eat('banana').sleepFirst(5);

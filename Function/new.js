@@ -7,11 +7,16 @@
  * @param args
  * @returns {*|{}}
  */
-function myNew(fn, ...args) {
+function myNew1(fn, ...args) {
     const obj = {};
     obj.__proto__ = fn.prototype;
     const result = fn.apply(obj, args);
     return result instanceof Object ? result : obj;
 }
 
-export default myNew
+function myNew2(Fn, ...args) {
+  const obj = Object.create(Fn.prototype);
+  const result = Fn.apply(obj, args);
+  return result instanceof Object ? result : obj;
+}
+export default myNew1
