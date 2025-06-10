@@ -14,4 +14,15 @@ function myNew(fn, ...args) {
     return result instanceof Object ? result : obj;
 }
 
+function myNew(constructor, ...args) {
+    // 1. 创建空对象
+    const obj = {};
+    // 2. 绑定原型链（推荐写法）
+    Object.setPrototypeOf(obj, constructor.prototype);
+    // 3. 执行构造函数并绑定this
+    const result = constructor.apply(obj, args);
+    // 4. 处理返回值：若构造函数返回对象则直接返回，否则返回新对象
+    return result instanceof Object ? result : obj;
+}
+
 export default myNew
